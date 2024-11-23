@@ -11,6 +11,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity {
     private MediaRecorder mediaRecorder;
     private MediaPlayer mediaPlayer;
@@ -29,4 +31,21 @@ public class MainActivity extends AppCompatActivity {
             mediaRecorder = null;
         }
     }
+    public void recordStart(View view){
+    try {
+        releaseRecorder();
+        File outFile = new File(fileName);
+        if (outFile.exists()) outFile.delete();
+        mediaRecorder = new MediaRecorder();
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        mediaRecorder.setOutputFile(fileName);
+        mediaRecorder.prepare();
+        mediaRecorder.start();
+    }
+    catch (Exception ex){
+        ex.printStackTrace();
+    }
+
 }
