@@ -4,6 +4,7 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,5 +48,10 @@ public class MainActivity extends AppCompatActivity {
     catch (Exception ex){
         ex.printStackTrace();
     }
+    public void recordStop(View view){
+            if(mediaRecorder != null) {
+                mediaRecorder.stop();
+            }
+
 
 }
